@@ -37,6 +37,7 @@ Source41: htcacheclean.sysconf
 
 # Systemd service file
 Source42: httpd.service
+Source43: httpd.socket
 
 # build/scripts patches
 Patch1: httpd-2.4.1-apctl.patch
