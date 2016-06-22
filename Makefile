@@ -1,3 +1,3 @@
-OBS_PROJECT := EA4
-OBS_PACKAGE := ea-apache2
-include $(EATOOLS_BUILD_DIR)obs.mk
+OBS_PROJECT := cPPietila
+OBS_PACKAGE := $(shell grep -A5 '[https://api.opensuse.org]' ~/.oscrc | awk -F= '/user=/ {print $$2}')
+BUILD_TARGET := home$(OBS_USERNAME):$(OBS_PROJECT):$(GIT_BRANCH)
