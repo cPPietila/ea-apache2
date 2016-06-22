@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------------
 
 # the upstream project
-OBS_PROJECT := EA4
+OBS_PROJECT := cPPietila
 
 # the package name in OBS
 OBS_PACKAGE := ea-apache2
