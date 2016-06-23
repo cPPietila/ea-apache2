@@ -15,8 +15,8 @@
 Summary: Apache HTTP Server
 Name: ea-apache24
 Version: 2.4.20
-Release: 3%{?dist}.cpanel.1
-Vendor: cPanel, Inc.
+Release: 3.1%{?dist}.cPPietila.1
+Vendor: Andrew Pietila
 URL: http://httpd.apache.org/
 Source0: http://www.apache.org/dist/httpd/httpd-%{version}.tar.bz2
 Source1: centos-noindex.tar.gz
@@ -73,6 +73,7 @@ BuildRequires: autoconf, perl, pkgconfig, findutils, xmlto
 BuildRequires: zlib-devel, libselinux-devel, lua-devel
 BuildRequires: ea-apr-devel >= 1.5.0, ea-apr-util-devel >= 1.2.0
 BuildRequires: pcre-devel >= 5.0
+%{?el7:BuildRequires: systemd-devel}
 Requires: system-logos >= 7.92.1-1, ea-apr >= 1.5.0
 Requires: ea-apache24-mpm, ea-apache24-cgi
 Requires: ea-apache24-mod_ssl
@@ -81,6 +82,7 @@ Requires: ea-apache24-tools
 Requires: ea-apache24-config
 Requires: ea-apache24-config-runtime
 Requires: ea-apache24-mod_bwlimited
+%{?el7:Requires: systemd-libs}
 
 Obsoletes: httpd-suexec
 Conflicts: httpd-mmn
@@ -1751,6 +1753,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/rpm/macros.apache2
 
 %changelog
+* Wed Jun 22 2016 Andrew Pietila <a.pietila@cpanel.net> - 2.4.20.3.1
+- Backport systemd compatibility from SVN r1511033
+
 * Fri May 27 2016 Jacob Perkins <jacob.perkins@cpanel.net> - 2.4.20-3
 - Updated suexec minimum uid to match EA3
 

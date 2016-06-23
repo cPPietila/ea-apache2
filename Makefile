@@ -36,7 +36,7 @@ ARCH := $(shell uname -m)
 endif
 
 DISPMSG := $(shell echo -en "You haven't set up OBS correctly on your machine.\nPlease read, https://cpanel.wiki/display/AL/Setting+up+yourself+for+using+OBS")
-OBS_USERNAME := $(shell grep -A5 '[build.dev.cpanel.net]' ~/.oscrc 2>/dev/null| awk -F= '/user=/ {print $$2}')
+OBS_USERNAME := $(shell grep -A5 '[build.opensuse.org]' ~/.oscrc 2>/dev/null| awk -F= '/user=/ {print $$2}')
 
 # NOTE: OBS only like ascii alpha-numeric characters
 ORIG_GIT_BRANCH := $(shell git branch 2>/dev/null | awk '/^*/ { print $$2 }')
@@ -50,13 +50,7 @@ endif
 GIT_BRANCH := $(shell echo "$(GIT_BRANCH)" | sed -e 's/[^a-z0-9]/-/ig')
 
 # if we're pushing to master, push to the upstream project
-ifeq ($(bamboo_repository_git_branch),master)
-BUILD_TARGET := $(OBS_PROJECT)
-# otherwise, push to a local integration area.  we substitute ':' because
-# OBS doesn't properly create the directory when it has : in it
-else
 BUILD_TARGET := home:$(OBS_USERNAME):$(subst :,-,$(OBS_PROJECT)):$(GIT_BRANCH)
-endif
 
 # the name of the spec file (hopefully there's only 1)
 SPEC := $(shell ls -1 SPECS | head -1)
